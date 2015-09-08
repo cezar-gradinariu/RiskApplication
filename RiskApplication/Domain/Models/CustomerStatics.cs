@@ -3,7 +3,7 @@
     public class CustomerStatics
     {
         public int Customer { get; set; }
-        public decimal AverageStake { get; set; }
+        public double AverageStake { get; set; }
         public int TotalBets { get; set; }
         public int TotalBetsWon { get; set; }
 

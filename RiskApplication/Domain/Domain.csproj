@@ -45,7 +45,12 @@
     <Compile Include="BusinessRules\UnusualWinRateBusinessRule.cs" />
     <Compile Include="FileReaders\CsvFileReader.cs" />
     <Compile Include="Models\CustomerStatics.cs" />
+    <Compile Include="Models\RiskAnalysis.cs" />
+    <Compile Include="Models\UnsettledBetWithRiskAnalysis.cs" />
     <Compile Include="Models\UnsettledBetWithStatistics.cs" />
+    <Compile Include="IFilePathsProvider.cs" />
+    <Compile Include="Services\IRiskAnalysisService.cs" />
+    <Compile Include="Services\RiskAnalysisService.cs" />
     <Compile Include="SystemWrappers\FileSystem.cs" />
     <Compile Include="FileReaders\ICsvFileReader.cs" />
     <Compile Include="LineReaders\ICsvLineReader.cs" />
