@@ -2,10 +2,10 @@
 @model IEnumerable<SettledBet>
 
 @{
-    string customer = @Model != null && @Model.Any() ? @Model.First().Customer.ToString() : string.Empty;
+    var customer = @Model != null && @Model.Any() ? @Model.First().Customer.ToString() : string.Empty;
 }
 
-<h2>Settled bets for client: @customer</h2>
+<h2>Settled bets for customer: @customer</h2>
 <table class="table" id="statistics">
     <thead>
         <tr>
@@ -17,14 +17,14 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (SettledBet item in Model)
+        @foreach (var item in Model)
         {
-            <tr data-risk="@(item.Win > 0 ? '1' : '0')">
-                <td>@item.Customer</td>
-                <td>@item.Participant</td>
-                <td>@item.Event</td>
-                <td>@item.Stake$</td>
-                <td>@item.Win</td>
+            <tr>
+                <td class="col-md-2">@item.Customer</td>
+                <td class="col-md-2">@item.Participant</td>
+                <td class="col-md-2">@item.Event</td>
+                <td class="col-md-2">@item.Stake$</td>
+                <td class="col-md-4">@item.Win</td>
             </tr>
         }
     </tbody>

@@ -8,5 +8,6 @@ namespace Domain.Services
         IEnumerable<SettledBet> ReadAllSettledBets(int customer);
         IEnumerable<UnsettledBet> ReadAllUnsettledBets();
         IEnumerable<CustomerStatics> GetCustomerStatics();
+        IEnumerable<UnsettledBetWithRiskAnalysis> GetUnsettledBetsWithRiskAnalysis();
     }
 }

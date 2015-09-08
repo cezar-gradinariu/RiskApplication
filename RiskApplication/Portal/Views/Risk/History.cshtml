@@ -1,0 +1,45 @@
+﻿
+@{
+    ViewBag.Title = "History";
+}
+
+<h2>History</h2>
+
+@using Domain.Models
+@model IEnumerable<CustomerStatics>
+
+
+<h2>Customers Statistics</h2>
+<table class="table" id="statistics">
+    <thead>
+        <tr>
+            <th>Customer</th>
+            <th>Average stake</th>
+            <th>Total wins</th>
+            <th>Total bets</th>
+            <th>Winning percentage</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr data-risk="@(item.WinningPercentage > 60 ? '1' : '0')">
+                <td class="col-md-2">@item.Customer</td>
+                <td class="col-md-2">@item.AverageStake</td>
+                <td class="col-md-2">@item.TotalBetsWon</td>
+                <td class="col-md-2">@item.TotalBets</td>
+                <td class="col-md-4">@item.WinningPercentage%</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<div id="settledBets">
+
+</div>
+
+
+@section scripts
+{
+    <script src="~/Scripts/Custom/Risk.js"></script>
+}
