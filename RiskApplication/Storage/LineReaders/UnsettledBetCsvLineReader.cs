@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Linq;
-using Domain.Extensions;
 using Domain.Models;
+using Storage.Extensions;
 
-namespace Domain.LineReaders
+namespace Storage.LineReaders
 {
     public class UnsettledBetCsvLineReader : ICsvLineReader<UnsettledBet>
     {

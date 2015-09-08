@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Domain.FileReaders
+namespace Storage.FileReaders
 {
     public interface ICsvFileReader<T> where T: class
     {

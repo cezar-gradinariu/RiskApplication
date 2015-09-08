@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Domain.LineReaders;
-using Domain.SystemWrappers;
+using Storage.LineReaders;
+using Storage.SystemWrappers;
 
-namespace Domain.FileReaders
+namespace Storage.FileReaders
 {
     public class CsvFileReader<T> : ICsvFileReader<T> where T : class
     {

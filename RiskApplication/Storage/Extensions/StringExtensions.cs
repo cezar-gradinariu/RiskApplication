@@ -1,4 +1,4 @@
-﻿namespace Domain.Extensions
+﻿namespace Storage.Extensions
 {
     public static class StringExtensions
     {

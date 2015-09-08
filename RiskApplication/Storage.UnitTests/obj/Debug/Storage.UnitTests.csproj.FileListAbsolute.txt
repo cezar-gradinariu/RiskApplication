@@ -1,0 +1,13 @@
+C:\Users\Cezar\Documents\GitHub\RiskApplication\RiskApplication\Storage.UnitTests\obj\Debug\Storage.UnitTests.csprojResolveAssemblyReference.cache
+C:\Users\Cezar\Documents\GitHub\RiskApplication\RiskApplication\Storage.UnitTests\bin\Debug\Storage.UnitTests.dll
+C:\Users\Cezar\Documents\GitHub\RiskApplication\RiskApplication\Storage.UnitTests\bin\Debug\Storage.UnitTests.pdb
+C:\Users\Cezar\Documents\GitHub\RiskApplication\RiskApplication\Storage.UnitTests\bin\Debug\Domain.dll
+C:\Users\Cezar\Documents\GitHub\RiskApplication\RiskApplication\Storage.UnitTests\bin\Debug\Moq.dll
+C:\Users\Cezar\Documents\GitHub\RiskApplication\RiskApplication\Storage.UnitTests\bin\Debug\nunit.framework.dll
+C:\Users\Cezar\Documents\GitHub\RiskApplication\RiskApplication\Storage.UnitTests\bin\Debug\Storage.dll
+C:\Users\Cezar\Documents\GitHub\RiskApplication\RiskApplication\Storage.UnitTests\bin\Debug\Domain.pdb
+C:\Users\Cezar\Documents\GitHub\RiskApplication\RiskApplication\Storage.UnitTests\bin\Debug\Storage.pdb
+C:\Users\Cezar\Documents\GitHub\RiskApplication\RiskApplication\Storage.UnitTests\bin\Debug\Moq.xml
+C:\Users\Cezar\Documents\GitHub\RiskApplication\RiskApplication\Storage.UnitTests\bin\Debug\nunit.framework.xml
+C:\Users\Cezar\Documents\GitHub\RiskApplication\RiskApplication\Storage.UnitTests\obj\Debug\Storage.UnitTests.dll
+C:\Users\Cezar\Documents\GitHub\RiskApplication\RiskApplication\Storage.UnitTests\obj\Debug\Storage.UnitTests.pdb

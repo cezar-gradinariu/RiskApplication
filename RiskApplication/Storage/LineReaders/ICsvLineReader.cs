@@ -1,4 +1,4 @@
-﻿namespace Domain.LineReaders
+﻿namespace Storage.LineReaders
 {
     public interface ICsvLineReader<T> where T : class
     {

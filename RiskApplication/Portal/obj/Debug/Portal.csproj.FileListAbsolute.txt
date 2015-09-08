@@ -35,3 +35,5 @@ C:\Users\Cezar\Documents\GitHub\RiskApplication\RiskApplication\Portal\bin\Ninje
 C:\Users\Cezar\Documents\GitHub\RiskApplication\RiskApplication\Portal\bin\Ninject.Web.Mvc.xml
 C:\Users\Cezar\Documents\GitHub\RiskApplication\RiskApplication\Portal\bin\AutoMapper.dll
 C:\Users\Cezar\Documents\GitHub\RiskApplication\RiskApplication\Portal\bin\AutoMapper.xml
+C:\Users\Cezar\Documents\GitHub\RiskApplication\RiskApplication\Portal\bin\Storage.dll
+C:\Users\Cezar\Documents\GitHub\RiskApplication\RiskApplication\Portal\bin\Storage.pdb

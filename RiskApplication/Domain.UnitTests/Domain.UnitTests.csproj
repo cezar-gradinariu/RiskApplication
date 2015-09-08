@@ -46,10 +46,7 @@
     <Compile Include="BusinessRules\UnusuallyHighStakeBusinessRuleShould.cs" />
     <Compile Include="BusinessRules\UnusualStakeBusinessRuleShould.cs" />
     <Compile Include="BusinessRules\UnusualWinRateBusinessRuleShould.cs" />
-    <Compile Include="Readers\CsvFileReaderShould.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Readers\SettledBetCsvLineReaderShould.cs" />
-    <Compile Include="Readers\UnsettledBetCsvLineReaderShould.cs" />
     <Compile Include="Services\RiskAnalysisServiceShould.cs" />
   </ItemGroup>
   <ItemGroup>

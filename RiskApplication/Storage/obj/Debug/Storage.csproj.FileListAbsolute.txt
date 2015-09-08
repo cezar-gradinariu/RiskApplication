@@ -1,0 +1,7 @@
+C:\Users\Cezar\Documents\GitHub\RiskApplication\RiskApplication\Storage\bin\Debug\Storage.dll
+C:\Users\Cezar\Documents\GitHub\RiskApplication\RiskApplication\Storage\bin\Debug\Storage.pdb
+C:\Users\Cezar\Documents\GitHub\RiskApplication\RiskApplication\Storage\bin\Debug\Domain.dll
+C:\Users\Cezar\Documents\GitHub\RiskApplication\RiskApplication\Storage\bin\Debug\Domain.pdb
+C:\Users\Cezar\Documents\GitHub\RiskApplication\RiskApplication\Storage\obj\Debug\Storage.csprojResolveAssemblyReference.cache
+C:\Users\Cezar\Documents\GitHub\RiskApplication\RiskApplication\Storage\obj\Debug\Storage.dll
+C:\Users\Cezar\Documents\GitHub\RiskApplication\RiskApplication\Storage\obj\Debug\Storage.pdb

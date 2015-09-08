@@ -1,12 +1,13 @@
 using Domain;
 using Domain.BusinessRules;
 using Domain.BusinessRules.Interfaces;
-using Domain.FileReaders;
-using Domain.LineReaders;
 using Domain.Models;
 using Domain.Services;
-using Domain.SystemWrappers;
 using Ninject.Modules;
+using Storage;
+using Storage.FileReaders;
+using Storage.LineReaders;
+using Storage.SystemWrappers;
 
 namespace Portal
 {
@@ -25,6 +26,7 @@ namespace Portal
             Bind<IUnusualWinRateBusinessRule>().To<UnusualWinRateBusinessRule>();
             Bind<IRiskAnalysisService>().To<RiskAnalysisService>();
             Bind<IFilePathsProvider>().To<FilePathsProvider>();
+            Bind<IRepository>().To<Repository>();
         }
     }
 }

@@ -195,6 +195,10 @@
       <Project>{1e253ae7-3249-497e-ae0d-f4d6461627f4}</Project>
       <Name>Domain</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Storage\Storage.csproj">
+      <Project>{94db3ea7-67fd-4025-b853-b74b6128f39f}</Project>
+      <Name>Storage</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

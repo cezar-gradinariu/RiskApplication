@@ -1,49 +1,43 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Domain.BusinessRules.Interfaces;
-using Domain.FileReaders;
 using Domain.Models;
 
 namespace Domain.Services
 {
     public class RiskAnalysisService : IRiskAnalysisService
     {
-        private readonly ICsvFileReader<SettledBet> _settledBetCsvFileReader;
-        private readonly ICsvFileReader<UnsettledBet> _unsettledBetCsvFileReader;
-        private readonly IFilePathsProvider _filePathsProvider;
+        private readonly IRepository _repository;
 
         private readonly IHighPrizeBusinessRule _highPrizeBusinessRule;
         private readonly IUnusualStakeBusinessRule _unusualStakeBusinessRule;
         private readonly IUnusuallyHighStakeBusinessRule _unusuallyHighStakeBusinessRule;
         private readonly IUnusualWinRateBusinessRule _unusualWinRateBusinessRule;
 
-        public RiskAnalysisService(ICsvFileReader<UnsettledBet> unsettledBetCsvFileReader,
-            ICsvFileReader<SettledBet> settledBetCsvFileReader, IFilePathsProvider filePathsProvider, IHighPrizeBusinessRule highPrizeBusinessRule, IUnusualStakeBusinessRule unusualStakeBusinessRule, IUnusuallyHighStakeBusinessRule unusuallyHighStakeBusinessRule, IUnusualWinRateBusinessRule unusualWinRateBusinessRule)
+        public RiskAnalysisService(IHighPrizeBusinessRule highPrizeBusinessRule,
+            IUnusualStakeBusinessRule unusualStakeBusinessRule,
+            IUnusuallyHighStakeBusinessRule unusuallyHighStakeBusinessRule,
+            IUnusualWinRateBusinessRule unusualWinRateBusinessRule, IRepository repository)
         {
-            _unsettledBetCsvFileReader = unsettledBetCsvFileReader;
-            _settledBetCsvFileReader = settledBetCsvFileReader;
-            _filePathsProvider = filePathsProvider;
             _highPrizeBusinessRule = highPrizeBusinessRule;
             _unusualStakeBusinessRule = unusualStakeBusinessRule;
             _unusuallyHighStakeBusinessRule = unusuallyHighStakeBusinessRule;
             _unusualWinRateBusinessRule = unusualWinRateBusinessRule;
+            _repository = repository;
         }
 
         public IEnumerable<SettledBet> ReadAllSettledBets(int customer)
         {
-            var filePath = _filePathsProvider.GetSettledBetsFilePath();
-            return _settledBetCsvFileReader.ReadCsvFile(filePath).Where(p => p.Customer == customer);
+            return _repository.GetAllSettledBets().Where(p => p.Customer == customer);
         }
 
         public IEnumerable<UnsettledBet> ReadAllUnsettledBets()
         {
-            var filePath = _filePathsProvider.GetUnsettledBetsFilePath();
-            return _unsettledBetCsvFileReader.ReadCsvFile(filePath);
+            return _repository.GetAllUnsettledBets();
         }
         public IEnumerable<CustomerStatics> GetCustomerStatics()
         {
-            var filePath = _filePathsProvider.GetSettledBetsFilePath();
-            var settledBets = _settledBetCsvFileReader.ReadCsvFile(filePath);
+            var settledBets = _repository.GetAllSettledBets();
             return settledBets
                 .GroupBy(p => p.Customer)
                 .Select(p => new CustomerStatics

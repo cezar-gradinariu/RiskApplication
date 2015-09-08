@@ -1,4 +1,4 @@
-﻿namespace Domain.SystemWrappers
+﻿namespace Storage.SystemWrappers
 {
     public interface IFileSystem
     {

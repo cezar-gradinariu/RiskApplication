@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Domain.BusinessRules;
-using Domain.FileReaders;
 using Domain.Models;
 using Domain.Services;
 using Moq;
@@ -12,31 +11,23 @@ namespace Domain.UnitTests.Services
     [TestFixture]
     public class RiskAnalysisServiceShould
     {
+        private Mock<IRepository> _repository;
+
         [SetUp]
         public void Setup()
         {
-            _settledBetCsvFileReader = new Mock<ICsvFileReader<SettledBet>>();
-            _unsettledBetCsvFileReader = new Mock<ICsvFileReader<UnsettledBet>>();
-            _filePathsProvider = new Mock<IFilePathsProvider>();
-            _filePathsProvider.Setup(p => p.GetSettledBetsFilePath()).Returns(SettledBetsFilePath);
-            _filePathsProvider.Setup(p => p.GetUnsettledBetsFilePath()).Returns(UnsettledBetsFilePath);
-
-            _sut = new RiskAnalysisService(_unsettledBetCsvFileReader.Object, _settledBetCsvFileReader.Object,
-                _filePathsProvider.Object, new HighPrizeBusinessRule(), new UnusualStakeBusinessRule(),
-                new UnusuallyHighStakeBusinessRule(), new UnusualWinRateBusinessRule());
+            _repository = new Mock<IRepository>();
+            _sut = new RiskAnalysisService( new HighPrizeBusinessRule(), new UnusualStakeBusinessRule(),
+                new UnusuallyHighStakeBusinessRule(), new UnusualWinRateBusinessRule(),_repository.Object);
         }
 
-        private const string SettledBetsFilePath = "X:\\settled.csv";
-        private const string UnsettledBetsFilePath = "X:\\unsettled.csv";
-        private Mock<ICsvFileReader<SettledBet>> _settledBetCsvFileReader;
-        private Mock<ICsvFileReader<UnsettledBet>> _unsettledBetCsvFileReader;
-        private Mock<IFilePathsProvider> _filePathsProvider;
+        
         private RiskAnalysisService _sut;
 
         [Test]
         public void ReturnClientStatisticsAsExpected()
         {
-            _settledBetCsvFileReader.Setup(p => p.ReadCsvFile(SettledBetsFilePath)).Returns(new List<SettledBet>
+            _repository.Setup(p => p.GetAllSettledBets()).Returns(new List<SettledBet>
             {
                 new SettledBet {Customer = 1, Stake = 20, Win = 50},
                 new SettledBet {Customer = 1, Stake = 40, Win = 0},
@@ -63,7 +54,7 @@ namespace Domain.UnitTests.Services
         [Test]
         public void ReturnSettledBetsForASpecificCustomer()
         {
-            _settledBetCsvFileReader.Setup(p => p.ReadCsvFile(SettledBetsFilePath)).Returns(new List<SettledBet>
+            _repository.Setup(p => p.GetAllSettledBets()).Returns(new List<SettledBet>
             {
                 new SettledBet {Customer = 1, Stake = 20, Win = 50},
                 new SettledBet {Customer = 1, Stake = 40, Win = 0},
@@ -81,7 +72,7 @@ namespace Domain.UnitTests.Services
         [Test]
         public void ShouldReturnCorrectRiskAnalysis()
         {
-            _settledBetCsvFileReader.Setup(p => p.ReadCsvFile(SettledBetsFilePath)).Returns(new List<SettledBet>
+            _repository.Setup(p => p.GetAllSettledBets()).Returns(new List<SettledBet>
             {
                 new SettledBet {Customer = 1, Stake = 20, Win = 35},
                 new SettledBet {Customer = 1, Stake = 40, Win = 0},
@@ -90,7 +81,7 @@ namespace Domain.UnitTests.Services
                 new SettledBet {Customer = 2, Stake = 50, Win = 90}
             });
 
-            _unsettledBetCsvFileReader.Setup(p => p.ReadCsvFile(UnsettledBetsFilePath)).Returns(new List<UnsettledBet>
+            _repository.Setup(p => p.GetAllUnsettledBets()).Returns(new List<UnsettledBet>
             {
                 new UnsettledBet{Customer = 1, Stake = 301, ToWin = 1500}, //high prize, unusual stake
                 new UnsettledBet{Customer = 1, Stake = 1000, ToWin = 1500}, //high prize, unusual stake, unusually high stake

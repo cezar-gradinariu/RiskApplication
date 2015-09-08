@@ -43,24 +43,16 @@
     <Compile Include="BusinessRules\UnusuallyHighStakeBusinessRule.cs" />
     <Compile Include="BusinessRules\UnusualStakeBusinessRule.cs" />
     <Compile Include="BusinessRules\UnusualWinRateBusinessRule.cs" />
-    <Compile Include="FileReaders\CsvFileReader.cs" />
     <Compile Include="Models\CustomerStatics.cs" />
     <Compile Include="Models\RiskAnalysis.cs" />
     <Compile Include="Models\UnsettledBetWithRiskAnalysis.cs" />
     <Compile Include="Models\UnsettledBetWithStatistics.cs" />
-    <Compile Include="IFilePathsProvider.cs" />
+    <Compile Include="IRepository.cs" />
     <Compile Include="Services\IRiskAnalysisService.cs" />
     <Compile Include="Services\RiskAnalysisService.cs" />
-    <Compile Include="SystemWrappers\FileSystem.cs" />
-    <Compile Include="FileReaders\ICsvFileReader.cs" />
-    <Compile Include="LineReaders\ICsvLineReader.cs" />
-    <Compile Include="SystemWrappers\IFileSystem.cs" />
     <Compile Include="Models\SettledBet.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="LineReaders\SettledBetCsvLineReader.cs" />
-    <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Models\UnsettledBet.cs" />
-    <Compile Include="LineReaders\UnsettledBetCsvLineReader.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -9,6 +9,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain.UnitTests", "Domain.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Portal", "Portal\Portal.csproj", "{68E7C750-E576-4407-85D4-73EED0E2F44E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Storage", "Storage\Storage.csproj", "{94DB3EA7-67FD-4025-B853-B74B6128F39F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Storage.UnitTests", "Storage.UnitTests\Storage.UnitTests.csproj", "{3856CBFB-15D3-444B-8465-6DF418068209}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +31,14 @@ Global
 		{68E7C750-E576-4407-85D4-73EED0E2F44E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{68E7C750-E576-4407-85D4-73EED0E2F44E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{68E7C750-E576-4407-85D4-73EED0E2F44E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{94DB3EA7-67FD-4025-B853-B74B6128F39F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{94DB3EA7-67FD-4025-B853-B74B6128F39F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{94DB3EA7-67FD-4025-B853-B74B6128F39F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{94DB3EA7-67FD-4025-B853-B74B6128F39F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3856CBFB-15D3-444B-8465-6DF418068209}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3856CBFB-15D3-444B-8465-6DF418068209}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3856CBFB-15D3-444B-8465-6DF418068209}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3856CBFB-15D3-444B-8465-6DF418068209}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
