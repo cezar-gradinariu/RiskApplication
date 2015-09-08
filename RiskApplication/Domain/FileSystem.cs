@@ -8,5 +8,10 @@ namespace Domain
         {
             return File.ReadAllLines(filePath);
         }
+
+        public bool Exists(string filePath)
+        {
+            return File.Exists(filePath);
+        }
     }
 }
