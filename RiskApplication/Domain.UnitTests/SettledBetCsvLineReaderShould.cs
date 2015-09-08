@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using Domain.LineReaders;
+using NUnit.Framework;
 
 namespace Domain.UnitTests
 {

@@ -1,6 +1,6 @@
 ﻿using System.IO;
 
-namespace Domain
+namespace Domain.SystemWrappers
 {
     public class FileSystem : IFileSystem
     {

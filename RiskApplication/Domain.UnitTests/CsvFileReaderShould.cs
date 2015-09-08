@@ -1,4 +1,8 @@
 ﻿using System.Linq;
+using Domain.FileReaders;
+using Domain.LineReaders;
+using Domain.Models;
+using Domain.SystemWrappers;
 using Moq;
 using NUnit.Framework;
 
