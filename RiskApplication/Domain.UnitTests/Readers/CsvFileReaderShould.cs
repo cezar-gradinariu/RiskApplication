@@ -6,7 +6,7 @@ using Domain.SystemWrappers;
 using Moq;
 using NUnit.Framework;
 
-namespace Domain.UnitTests
+namespace Domain.UnitTests.Readers
 {
     [TestFixture]
     public class CsvFileReaderShould

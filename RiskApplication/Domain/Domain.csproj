@@ -34,7 +34,18 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BusinessRules\HighPrizeBusinessRule.cs" />
+    <Compile Include="BusinessRules\Interfaces\IBusinessRule.cs" />
+    <Compile Include="BusinessRules\Interfaces\IHighPrizeBusinessRule.cs" />
+    <Compile Include="BusinessRules\Interfaces\IUnusuallyHighStakeBusinessRule.cs" />
+    <Compile Include="BusinessRules\Interfaces\IUnusualStakeBusinessRule.cs" />
+    <Compile Include="BusinessRules\Interfaces\IUnusualWinRateBusinessRule.cs" />
+    <Compile Include="BusinessRules\UnusuallyHighStakeBusinessRule.cs" />
+    <Compile Include="BusinessRules\UnusualStakeBusinessRule.cs" />
+    <Compile Include="BusinessRules\UnusualWinRateBusinessRule.cs" />
     <Compile Include="FileReaders\CsvFileReader.cs" />
+    <Compile Include="Models\CustomerStatics.cs" />
+    <Compile Include="Models\UnsettledBetWithStatistics.cs" />
     <Compile Include="SystemWrappers\FileSystem.cs" />
     <Compile Include="FileReaders\ICsvFileReader.cs" />
     <Compile Include="LineReaders\ICsvLineReader.cs" />
@@ -46,6 +57,7 @@
     <Compile Include="Models\UnsettledBet.cs" />
     <Compile Include="LineReaders\UnsettledBetCsvLineReader.cs" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

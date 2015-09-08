@@ -1,10 +1,10 @@
 ﻿using Domain.LineReaders;
 using NUnit.Framework;
 
-namespace Domain.UnitTests
+namespace Domain.UnitTests.Readers
 {
     [TestFixture]
-    public class UnsettledBetCsvLineReaderShould
+    public class SettledBetCsvLineReaderShould
     {
         [TestCase(null, Description = "On null line return null")]
         [TestCase("", Description = "On empty line return null")]
@@ -15,8 +15,8 @@ namespace Domain.UnitTests
         [TestCase("1,2,3,,5", Description = "When a cell is not valued return null")]
         public void ReturnNullOnInvalidLineInputs(string line)
         {
-            var lineReader = new UnsettledBetCsvLineReader();
-            var result = lineReader.ReadLine(line);
+            var settledBetCsvLineReader = new SettledBetCsvLineReader();
+            var result = settledBetCsvLineReader.ReadLine(line);
             Assert.IsNull(result);
         }
 
@@ -24,14 +24,14 @@ namespace Domain.UnitTests
         [TestCase("1,2,3,40,0")]
         public void ReturnExpectedObject(string line)
         {
-            var lineReader = new UnsettledBetCsvLineReader();
-            var result = lineReader.ReadLine(line);
+            var settledBetCsvLineReader = new SettledBetCsvLineReader();
+            var result = settledBetCsvLineReader.ReadLine(line);
             Assert.IsNotNull(result);
             Assert.AreEqual(1, result.Customer);
             Assert.AreEqual(2, result.Event);
             Assert.AreEqual(3, result.Participant);
             Assert.AreEqual(40, result.Stake);
-            Assert.AreEqual(0, result.ToWin);
+            Assert.AreEqual(0, result.Win);
         }
     }
 }
