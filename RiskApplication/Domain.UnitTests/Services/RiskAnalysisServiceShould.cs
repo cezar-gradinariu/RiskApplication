@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Domain.BusinessRules;
 using Domain.FileReaders;
 using Domain.Models;
 using Domain.Services;
@@ -11,13 +12,6 @@ namespace Domain.UnitTests.Services
     [TestFixture]
     public class RiskAnalysisServiceShould
     {
-        private const string SettledBetsFilePath = "X:\\settled.csv";
-        private const string UnsettledBetsFilePath = "X:\\unsettled.csv";
-        private Mock<ICsvFileReader<SettledBet>> _settledBetCsvFileReader;
-        private Mock<ICsvFileReader<UnsettledBet>> _unsettledBetCsvFileReader;
-        private Mock<IFilePathsProvider> _filePathsProvider;
-        private RiskAnalysisService _sut;
-
         [SetUp]
         public void Setup()
         {
@@ -28,21 +22,28 @@ namespace Domain.UnitTests.Services
             _filePathsProvider.Setup(p => p.GetUnsettledBetsFilePath()).Returns(UnsettledBetsFilePath);
 
             _sut = new RiskAnalysisService(_unsettledBetCsvFileReader.Object, _settledBetCsvFileReader.Object,
-                _filePathsProvider.Object);
+                _filePathsProvider.Object, new HighPrizeBusinessRule(), new UnusualStakeBusinessRule(),
+                new UnusuallyHighStakeBusinessRule(), new UnusualWinRateBusinessRule());
         }
+
+        private const string SettledBetsFilePath = "X:\\settled.csv";
+        private const string UnsettledBetsFilePath = "X:\\unsettled.csv";
+        private Mock<ICsvFileReader<SettledBet>> _settledBetCsvFileReader;
+        private Mock<ICsvFileReader<UnsettledBet>> _unsettledBetCsvFileReader;
+        private Mock<IFilePathsProvider> _filePathsProvider;
+        private RiskAnalysisService _sut;
 
         [Test]
         public void ReturnClientStatisticsAsExpected()
         {
             _settledBetCsvFileReader.Setup(p => p.ReadCsvFile(SettledBetsFilePath)).Returns(new List<SettledBet>
             {
-                new SettledBet{Customer = 1, Stake = 20, Win = 50},
-                new SettledBet{Customer = 1, Stake = 40, Win = 0},
-                new SettledBet{Customer = 1, Stake = 35, Win = 0},
-                new SettledBet{Customer = 1, Stake = 25, Win = 40},
-
-                new SettledBet{Customer = 2, Stake = 100, Win = 125},
-                new SettledBet{Customer = 2, Stake = 50, Win = 90}
+                new SettledBet {Customer = 1, Stake = 20, Win = 50},
+                new SettledBet {Customer = 1, Stake = 40, Win = 0},
+                new SettledBet {Customer = 1, Stake = 35, Win = 0},
+                new SettledBet {Customer = 1, Stake = 25, Win = 40},
+                new SettledBet {Customer = 2, Stake = 100, Win = 125},
+                new SettledBet {Customer = 2, Stake = 50, Win = 90}
             });
 
             var result = _sut.GetCustomerStatics().ToList();
@@ -64,18 +65,66 @@ namespace Domain.UnitTests.Services
         {
             _settledBetCsvFileReader.Setup(p => p.ReadCsvFile(SettledBetsFilePath)).Returns(new List<SettledBet>
             {
-                new SettledBet{Customer = 1, Stake = 20, Win = 50},
-                new SettledBet{Customer = 1, Stake = 40, Win = 0},
-                new SettledBet{Customer = 1, Stake = 35, Win = 0},
-                new SettledBet{Customer = 1, Stake = 25, Win = 40},
-
-                new SettledBet{Customer = 2, Stake = 100, Win = 125},
-                new SettledBet{Customer = 2, Stake = 50, Win = 90}
+                new SettledBet {Customer = 1, Stake = 20, Win = 50},
+                new SettledBet {Customer = 1, Stake = 40, Win = 0},
+                new SettledBet {Customer = 1, Stake = 35, Win = 0},
+                new SettledBet {Customer = 1, Stake = 25, Win = 40},
+                new SettledBet {Customer = 2, Stake = 100, Win = 125},
+                new SettledBet {Customer = 2, Stake = 50, Win = 90}
             });
 
             var result = _sut.ReadAllSettledBets(1).ToList();
             Assert.AreEqual(4, result.Count());
             Assert.AreEqual(1, result[0].Customer);
+        }
+
+        [Test]
+        public void ShouldReturnCorrectRiskAnalysis()
+        {
+            _settledBetCsvFileReader.Setup(p => p.ReadCsvFile(SettledBetsFilePath)).Returns(new List<SettledBet>
+            {
+                new SettledBet {Customer = 1, Stake = 20, Win = 35},
+                new SettledBet {Customer = 1, Stake = 40, Win = 0},
+
+                new SettledBet {Customer = 2, Stake = 100, Win = 125},
+                new SettledBet {Customer = 2, Stake = 50, Win = 90}
+            });
+
+            _unsettledBetCsvFileReader.Setup(p => p.ReadCsvFile(UnsettledBetsFilePath)).Returns(new List<UnsettledBet>
+            {
+                new UnsettledBet{Customer = 1, Stake = 301, ToWin = 1500}, //high prize, unusual stake
+                new UnsettledBet{Customer = 1, Stake = 1000, ToWin = 1500}, //high prize, unusual stake, unusually high stake
+
+                new UnsettledBet{Customer = 2, Stake = 25, ToWin = 50}, //high winning rate -> 100%
+                new UnsettledBet{Customer = 3, Stake = 40, ToWin = 60}, //new customer, no history yet, no other risks
+            });
+            var list = _sut.GetUnsettledBetsWithRiskAnalysis().ToList();
+            Assert.AreEqual(4, list.Count);
+            var c1 = list.First(p => p.UnsettledBet.Stake == 301);
+            Assert.IsTrue(c1.RiskAnalysis.IsHighPrize);
+            Assert.IsTrue(c1.RiskAnalysis.IsHighStake);
+            Assert.IsFalse(c1.RiskAnalysis.IsUnusuallyHighStake);
+            Assert.IsFalse(c1.RiskAnalysis.HasUnusualWinRate);
+
+
+            var c2 = list.First(p => p.UnsettledBet.Stake == 1000);
+            Assert.IsTrue(c2.RiskAnalysis.IsHighPrize);
+            Assert.IsTrue(c2.RiskAnalysis.IsHighStake);
+            Assert.IsTrue(c2.RiskAnalysis.IsUnusuallyHighStake);
+            Assert.IsFalse(c2.RiskAnalysis.HasUnusualWinRate);
+
+            var c3 = list.First(p => p.UnsettledBet.Stake == 25);
+            Assert.IsFalse(c3.RiskAnalysis.IsHighPrize);
+            Assert.IsFalse(c3.RiskAnalysis.IsHighStake);
+            Assert.IsFalse(c3.RiskAnalysis.IsUnusuallyHighStake);
+            Assert.IsTrue(c3.RiskAnalysis.HasUnusualWinRate);
+
+            var c4 = list.First(p => p.UnsettledBet.Stake == 40);
+            Assert.IsFalse(c4.RiskAnalysis.IsHighPrize);
+            Assert.IsFalse(c4.RiskAnalysis.IsHighStake);
+            Assert.IsFalse(c4.RiskAnalysis.IsUnusuallyHighStake);
+            Assert.IsFalse(c4.RiskAnalysis.HasUnusualWinRate);
+
         }
     }
 }

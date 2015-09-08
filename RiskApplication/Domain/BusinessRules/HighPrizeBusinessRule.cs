@@ -1,8 +1,9 @@
-﻿using Domain.Models;
+﻿using Domain.BusinessRules.Interfaces;
+using Domain.Models;
 
 namespace Domain.BusinessRules
 {
-    public class HighPrizeBusinessRule
+    public class HighPrizeBusinessRule :IHighPrizeBusinessRule
     {
         public bool IsSatisfied(UnsettledBet unsettledBet)
         {
