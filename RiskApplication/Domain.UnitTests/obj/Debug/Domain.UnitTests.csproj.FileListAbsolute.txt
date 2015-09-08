@@ -1,0 +1,11 @@
+C:\Users\Cezar\Documents\GitHub\RiskApplication\RiskApplication\Domain.UnitTests\bin\Debug\Domain.UnitTests.dll
+C:\Users\Cezar\Documents\GitHub\RiskApplication\RiskApplication\Domain.UnitTests\bin\Debug\Domain.UnitTests.pdb
+C:\Users\Cezar\Documents\GitHub\RiskApplication\RiskApplication\Domain.UnitTests\bin\Debug\Domain.dll
+C:\Users\Cezar\Documents\GitHub\RiskApplication\RiskApplication\Domain.UnitTests\bin\Debug\Moq.dll
+C:\Users\Cezar\Documents\GitHub\RiskApplication\RiskApplication\Domain.UnitTests\bin\Debug\nunit.framework.dll
+C:\Users\Cezar\Documents\GitHub\RiskApplication\RiskApplication\Domain.UnitTests\bin\Debug\Domain.pdb
+C:\Users\Cezar\Documents\GitHub\RiskApplication\RiskApplication\Domain.UnitTests\bin\Debug\Moq.xml
+C:\Users\Cezar\Documents\GitHub\RiskApplication\RiskApplication\Domain.UnitTests\bin\Debug\nunit.framework.xml
+C:\Users\Cezar\Documents\GitHub\RiskApplication\RiskApplication\Domain.UnitTests\obj\Debug\Domain.UnitTests.csprojResolveAssemblyReference.cache
+C:\Users\Cezar\Documents\GitHub\RiskApplication\RiskApplication\Domain.UnitTests\obj\Debug\Domain.UnitTests.dll
+C:\Users\Cezar\Documents\GitHub\RiskApplication\RiskApplication\Domain.UnitTests\obj\Debug\Domain.UnitTests.pdb
