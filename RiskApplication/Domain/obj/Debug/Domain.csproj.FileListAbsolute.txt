@@ -1,5 +1,4 @@
 C:\Users\Cezar\Documents\GitHub\RiskApplication\RiskApplication\Domain\bin\Debug\Domain.dll
 C:\Users\Cezar\Documents\GitHub\RiskApplication\RiskApplication\Domain\bin\Debug\Domain.pdb
-C:\Users\Cezar\Documents\GitHub\RiskApplication\RiskApplication\Domain\obj\Debug\Domain.csprojResolveAssemblyReference.cache
 C:\Users\Cezar\Documents\GitHub\RiskApplication\RiskApplication\Domain\obj\Debug\Domain.dll
 C:\Users\Cezar\Documents\GitHub\RiskApplication\RiskApplication\Domain\obj\Debug\Domain.pdb

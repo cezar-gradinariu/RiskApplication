@@ -1,0 +1,39 @@
+﻿@using Domain.Models
+@model IEnumerable<CustomerStatics>
+           
+
+<h2>Client History</h2>
+<table class="table" id="statistics">
+    <thead>
+        <tr>
+            <th>Customer</th>
+            <th>Average stake</th>
+            <th>Total wins</th>
+            <th>Total bets</th>
+            <th>Winning percentage</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr data-risk="@(item.WinningPercentage > 60 ? '1' : '0')">
+                <td>@item.Customer</td>
+                <td>@item.AverageStake</td>
+                <td>@item.TotalBetsWon</td>
+                <td>@item.TotalBets</td>
+                <td>@item.WinningPercentage%</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<div id="settledBets">
+
+</div>
+
+
+
+@section scripts
+{
+    <script src="~/Scripts/Custom/Risk.js"></script>
+}

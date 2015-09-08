@@ -1,0 +1,32 @@
+﻿@using Domain.Models
+@model IEnumerable<SettledBet>
+
+@{
+    string customer = @Model != null && @Model.Any() ? @Model.First().Customer.ToString() : string.Empty;
+}
+
+<h2>Settled bets for client: @customer</h2>
+<table class="table" id="statistics">
+    <thead>
+        <tr>
+            <th>Customer</th>
+            <th>Participant</th>
+            <th>Event</th>
+            <th>Stake</th>
+            <th>Won</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (SettledBet item in Model)
+        {
+            <tr data-risk="@(item.Win > 0 ? '1' : '0')">
+                <td>@item.Customer</td>
+                <td>@item.Participant</td>
+                <td>@item.Event</td>
+                <td>@item.Stake$</td>
+                <td>@item.Win</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
