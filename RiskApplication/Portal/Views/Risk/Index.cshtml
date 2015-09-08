@@ -14,32 +14,26 @@
             <th>High stake</th>
             <th>Unusually high stake</th>
             <th>Unusually high win rate</th>
+            <th>Win rate</th>
         </tr>
     </thead>
     <tbody>
         @foreach (var item in Model)
         {
-            <tr>
+            var risk = @item.IsHighPrize || @item.IsHighStake || @item.IsUnusuallyHighStake || @item.HasUnusualWinRate;
+
+            <tr data-risk="@(risk ? '1' : '0')">
                 <td class="col-md-1">@item.Customer</td>
                 <td class="col-md-1">@item.Event</td>
                 <td class="col-md-1">@item.Participant</td>
-                <td class="col-md-2">@item.Stake</td>
-                <td class="col-md-1">@item.ToWin$</td>
+                <td class="col-md-1">@item.Stake.ToString("N")</td>
+                <td class="col-md-1">@item.ToWin.ToString("N")$</td>
                 <td class="col-md-1">@item.IsHighPrize</td>
                 <td class="col-md-1">@item.IsHighStake</td>
                 <td class="col-md-2">@item.IsUnusuallyHighStake</td>
                 <td class="col-md-2">@item.HasUnusualWinRate</td>
+                <td class="col-md-1">@item.WinningPercentage.ToString("N")%</td>
             </tr>
         }
     </tbody>
 </table>
-
-<div id="settledBets">
-
-</div>
-
-
-@section scripts
-{
-    <script src="~/Scripts/Custom/Risk.js"></script>
-}

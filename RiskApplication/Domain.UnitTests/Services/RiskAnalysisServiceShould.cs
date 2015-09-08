@@ -105,6 +105,7 @@ namespace Domain.UnitTests.Services
             Assert.IsTrue(c1.RiskAnalysis.IsHighStake);
             Assert.IsFalse(c1.RiskAnalysis.IsUnusuallyHighStake);
             Assert.IsFalse(c1.RiskAnalysis.HasUnusualWinRate);
+            Assert.AreEqual(c1.WinningPercentage, 50);
 
 
             var c2 = list.First(p => p.UnsettledBet.Stake == 1000);
@@ -112,18 +113,21 @@ namespace Domain.UnitTests.Services
             Assert.IsTrue(c2.RiskAnalysis.IsHighStake);
             Assert.IsTrue(c2.RiskAnalysis.IsUnusuallyHighStake);
             Assert.IsFalse(c2.RiskAnalysis.HasUnusualWinRate);
+            Assert.AreEqual(c2.WinningPercentage, 50);
 
             var c3 = list.First(p => p.UnsettledBet.Stake == 25);
             Assert.IsFalse(c3.RiskAnalysis.IsHighPrize);
             Assert.IsFalse(c3.RiskAnalysis.IsHighStake);
             Assert.IsFalse(c3.RiskAnalysis.IsUnusuallyHighStake);
             Assert.IsTrue(c3.RiskAnalysis.HasUnusualWinRate);
+            Assert.AreEqual(c3.WinningPercentage, 100);
 
             var c4 = list.First(p => p.UnsettledBet.Stake == 40);
             Assert.IsFalse(c4.RiskAnalysis.IsHighPrize);
             Assert.IsFalse(c4.RiskAnalysis.IsHighStake);
             Assert.IsFalse(c4.RiskAnalysis.IsUnusuallyHighStake);
             Assert.IsFalse(c4.RiskAnalysis.HasUnusualWinRate);
+            Assert.AreEqual(c4.WinningPercentage, 0);
 
         }
     }

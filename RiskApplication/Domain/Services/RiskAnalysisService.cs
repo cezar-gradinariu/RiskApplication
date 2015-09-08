@@ -76,6 +76,7 @@ namespace Domain.Services
             return GetUnsettledBetsWithStatistics()
                 .Select(p => new UnsettledBetWithRiskAnalysis
                 {
+                    WinningPercentage = p.CustomerStatics == null ? 0 : p.CustomerStatics.WinningPercentage,
                     UnsettledBet = p.UnsettledBet,
                     RiskAnalysis = new RiskAnalysis
                     {
